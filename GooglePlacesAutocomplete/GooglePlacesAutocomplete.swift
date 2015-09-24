@@ -139,9 +139,9 @@ public class GooglePlacesAutocompleteContainer: UIViewController {
   @IBOutlet weak var topConstraint: NSLayoutConstraint!
 
   var delegate: GooglePlacesAutocompleteDelegate?
-  var apiKey: String?
+  public var apiKey: String?
   var places = [Place]()
-  var placeType: PlaceType = .All
+  public var placeType: PlaceType = .All
 
   convenience init(apiKey: String, placeType: PlaceType = .All) {
     let bundle = NSBundle(forClass: GooglePlacesAutocompleteContainer.self)
