@@ -301,13 +301,13 @@ class GooglePlacesRequestHelpers {
 
     var session = URLSession.shared
     var task = session.dataTask(with: request, completionHandler: { data, response, error in
-      self.handleResponse(data, response: response , error: error, success: success)
+      self.handleResponse(data, response: response as! HTTPURLResponse, error: error, success: success)
     }) 
 
     task.resume()
   }
 
-  fileprivate class func handleResponse(_ data: Data!, response: HTTPURLResponse!, error: NSError!, success: @escaping (NSDictionary) -> ()) {
+  fileprivate class func handleResponse(_ data: Data!, response: HTTPURLResponse!, error: Error!, success: @escaping (NSDictionary) -> ()) {
     if let error = error {
       print("GooglePlaces Error: \(error.localizedDescription)")
       return
