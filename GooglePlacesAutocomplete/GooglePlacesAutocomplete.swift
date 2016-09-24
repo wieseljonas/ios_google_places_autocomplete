@@ -295,14 +295,16 @@ class GooglePlacesRequestHelpers {
   }
 
   fileprivate class func doRequest(_ url: String, params: [String: String], success: @escaping (NSDictionary) -> ()) {
-    var request = NSMutableURLRequest(
+    var request = URLRequest(
       url: URL(string: "\(url)?\(query(params as [String : AnyObject]))")!
     )
 
     var session = URLSession.shared
-    var task = session.dataTask(with: request, completionHandler: { data, response, error in
-      self.handleResponse(data, response: response as! HTTPURLResponse, error: error, success: success)
-    }) 
+    
+    
+    var task = session.dataTask(with: request) { (data, response, error) in
+        self.handleResponse(data, response: response as! HTTPURLResponse, error: error, success: success)
+    }
 
     task.resume()
   }
